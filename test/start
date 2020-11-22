@@ -9,11 +9,12 @@
 #    start syntax # Run tests in syntax.vader
 
 cd $(dirname "$0")
+vim_executable="${VIM_EXECUTABLE_FOR_TEST:-vim}"
 if [ "$#" -eq 0 ]; then
-  vim -u vimrc -c 'Vader! ./*.vader'
+  "$vim_executable" -u vimrc -c 'Vader! ./*.vader'
 else
   while [ "$#" -gt 0 ]; do
-    vim -u vimrc -c "Vader! ./${1}.vader"
+    "$vim_executable" -u vimrc -c "Vader! ./${1}.vader"
     shift
   done
 fi
